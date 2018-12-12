@@ -4,29 +4,42 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header>  
+    <ion-navbar>
+      <ion-title>Items</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="goToAddItem()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
-  <ion-navbar>
-    <ion-title>Items</ion-title>
-  </ion-navbar>
 
-</ion-header>
+<ion-content>  
 
+    <ion-list inset>
 
-<ion-content>
+      <ion-item-sliding *ngFor="let item of items$ | async">
 
-  <ion-list inset>
+        <ion-item>
 
-    <ion-item *ngFor="let item of items$ | async">
+          <ion-label>{{ item.name }}</ion-label>
 
-      <ion-label> {{ item.name }}</ion-label>
+          <ion-checkbox [ngModel]="item.done" (ionChange)="toggle(item)"></ion-checkbox>
 
-      <ion-checkbox [(ngModel)] = "item.done"></ion-checkbox>
+          <ion-badge item-end>{{ item.quantity }}</ion-badge>
 
-      <ion-badge item-end>{{ item.quantity }}</ion-badge>
+        </ion-item>
 
-    </ion-item>
+        <ion-item-options>
 
-  </ion-list>
-  
-</ion-content>
+          <button ion-button (click)="delete(item)" color="danger">Delete</button>
+
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-list>
+
+  </ion-content>  

@@ -9,12 +9,14 @@ import { HomePage } from '../pages/home/home';
 import { GraphQLModule } from '../graphqlModule';
 import { ShoppingListProvider } from '../providers/shopping-list/shopping-list';
 import { TabsPage } from '../pages/tabs/tabs';
+import { NewItemPage } from '../pages/new-item/new-item';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TabsPage
+    TabsPage,
+    NewItemPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { TabsPage } from '../pages/tabs/tabs';
   entryComponents: [
     MyApp,
     HomePage,
-    TabsPage
+    TabsPage,
+    NewItemPage
   ],
   providers: [
     StatusBar,

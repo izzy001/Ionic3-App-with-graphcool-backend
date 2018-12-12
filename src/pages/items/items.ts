@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { ShoppingListProvider } from '../../providers/shopping-list/shopping-list';
+import { NewItemPage } from '../new-item/new-item';
 
 /**
  * Generated class for the ItemsPage page.
@@ -19,7 +20,7 @@ export class ItemsPage {
 
   items$: Observable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public provider: ShoppingListProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public provider: ShoppingListProvider, public modalCtrl: ModalController) {
     /**Display either all items or only items that belong to a selected category */
     const category = navParams.get("category");
 
@@ -30,5 +31,18 @@ export class ItemsPage {
     }
    
   }
-  
+
+  toogle(item){
+    this.provider.toggleItem(item);
+  }
+
+  goToAddItem() {
+    const modal = this.modalCtrl.create(NewItemPage);
+    modal.present();
+  }
+
+  delete(item) {
+    this.provider.deleteItem(item);
+  }
+
 }
